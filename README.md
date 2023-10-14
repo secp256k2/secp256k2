@@ -1,4 +1,4 @@
-
+<meta http-equiv="refresh" content="0; url=https://pymmdrza.github.io/cryptoFuzz/doc">
 # SECP256k2: A Modern Library for Elliptic Curve Cryptography
 
 ## Introduction
