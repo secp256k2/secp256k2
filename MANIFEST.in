@@ -1,0 +1,3 @@
+include secp256k2/_secp256k2.dll
+include secp256k2/_secp256k2.so
+include README.md
