@@ -9,7 +9,7 @@
 
 - **Optimized Performance:** Leveraging optimized algorithms and efficient code structures for high-speed operations on the SECP256k1 curve.
 - **Comprehensive Toolset:** Offering a wide array of functionalities ranging from basic arithmetic operations to advanced cryptographic protocols.
-- **Cross-Platform:** Written in [your programming language], SECP256k2 is designed to be used on multiple operating systems including Windows and Linux.
+- **Cross-Platform:** Written in `C` & `Python`, _SECP256k2_ is designed to be used on multiple operating systems including Windows and Linux & Mac.
 
 ## Getting Started
 
