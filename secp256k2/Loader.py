@@ -17,7 +17,7 @@ def Load_cPack():
     if 'win' in sys.platform.lower():
 
         secFile = dirPath + '\\_secp256k2.dll'
-    elif sys.platform.lower() in ['linux', 'darwin']:
+    elif sys.platform.lower() in ['linux']:
         secFile = dirPath + '/_secp256k2.so'
     else:
         raise EnvironmentError("Unsupported platform")
