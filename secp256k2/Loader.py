@@ -15,7 +15,6 @@ def load_dynamic_lib(lib_path):
 def Load_cPack():
     dirPath = os.path.dirname(os.path.realpath(__file__))
     if 'win' in sys.platform.lower():
-
         secFile = dirPath + '\\_secp256k2.dll'
     elif sys.platform.lower() in ['linux']:
         secFile = dirPath + '/_secp256k2.so'

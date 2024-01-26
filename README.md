@@ -103,6 +103,78 @@ WIF = "WIF_KEY_HERE"
 privatekey = co.Wif_To_Hex(WIF)
 ```
 
+### Convert Private Key To Wif Compressed and Uncompressed
+
+```python
+from secp256k2 import Contactor
+
+cont = Contactor()
+
+privatekey = "PRIVATE_KEY_HERE"
+
+wif_compress = cont.btc_pvk_to_wif(privatekey, True)
+
+wif_uncompress = cont.btc_pvk_to_wif(privatekey, False)
+
+```
+
+### Convert Wif to Private Key (integer/decimal):
+
+```python
+from secp256k2 import Contactor
+
+cont = Contactor()
+
+wif = "WIF_KEY_HERE"
+
+privatekey = cont.btc_wif_to_pvk_int(wif)
+```
+
+### Convert Wif to Private Key (hex):
+
+```python
+
+from secp256k2 import Contactor
+
+cont = Contactor()
+
+wif = "WIF_KEY_HERE"
+
+privatekey = cont.btc_wif_to_pvk_hex(wif)
+```
+
+### Convert Private Key (decimal) To RIPEMD160 (h160)
+
+```python
+
+from secp256k2 import Contactor
+
+cont = Contactor()
+
+privatekey = 12345678901234567891234567891234567789
+
+ripemd160 = cont.privatekey_to_h160(privatekey)
+
+```
+
+### Convert Private Key (Decimal) To Compressed and uncompressed Address
+
+- **addr_type** (_int_) : P2PKH = `0`, P2SH = `1`, P2WPKH = `2`
+- **compress** (_bool_) : `True` : Compress, `False` : Uncompress
+- **private key** (_decimal_) : `0` - `115792089237316195423570985008687907852837564279074904382605163141518161494337`
+
+```python
+
+from secp256k2 import Contactor
+
+cont = Contactor()
+
+privatekey = 12345678901234567891234567891234567789
+
+address_compress = cont.privatekey_to_address(0, True, privatekey)
+
+address_uncompress = cont.privatekey_to_address(0, False, privatekey)
+```
 ## Documentation
 
 For more detailed information and advanced usage, please refer to the [full documentation](https://secp256k2.github.io/secp256k2).

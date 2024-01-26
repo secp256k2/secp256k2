@@ -1,4 +1,4 @@
-simport os
+import os
 import sys
 import ctypes
 
@@ -42,7 +42,7 @@ class Base58k1:
     # =============================================================================
 
     @staticmethod
-    def fuzz256k1(self, result):
+    def fuzz256k1(result):
         return ctypes.cast(result, ctypes.c_char_p).value.decode('utf8')
 
     def b58py(self, data):
@@ -138,7 +138,7 @@ class Contactor:
 
     # ==============================================================================
     @staticmethod
-    def Decimal_To_RIPEMD160(self, dec, addr_type, compress=True):
+    def Decimal_To_RIPEMD160(dec, addr_type, compress=True):
         if dec < 0:
             dec = MAX_HEX + dec
         pass_int_value = fl(dec).encode('utf8')
@@ -339,8 +339,6 @@ class Contactor:
         return addr
 
     # ==============================================================================
-
-    # ==============================================================================
     @staticmethod
     def Pub_To_RIPEMD160(self, pub: bytes, addr_type: int, compress: bool = True):
 
@@ -405,8 +403,6 @@ class Contactor:
 
     # ==============================================================================
 
-    # ==============================================================================
-
     @staticmethod
     def Load_To_Memory(self, input_bin: str, verbose: bool = False):
         """input_bin_file is sorted h160 data of 20 bytes each element.
@@ -436,18 +432,18 @@ class Contactor:
 
     # =============================================================================
     @staticmethod
-    def Hex_To_Bytes(self, hexed: str) -> bytes:
+    def Hex_To_Bytes(hexed: str) -> bytes:
         return bytes.fromhex(hexed)
 
     # =============================================================================
 
     @staticmethod
-    def byter(self, mass):
+    def byter(mass):
         return bytes(bytearray(mass))
 
     # ==============================================================================
     @staticmethod
-    def _ScalarMultiply(self, pvk: int):
+    def _ScalarMultiply(pvk: int):
         """ Integer value passed to function. 65 bytes uncompressed pubkey output """
         res = PREFIX_0 * 65
         pass_int_value = fl(pvk).encode('utf8')
@@ -546,3 +542,135 @@ class Contactor:
         Fuzz.init_P2_Group(pubkey_bytes)
 
     # ==============================================================================
+
+    @staticmethod
+    def free_memory(self, pubkey_bytes):
+        Fuzz.free_memory(pubkey_bytes)
+
+    # ==============================================================================
+    @staticmethod
+    def _privatekey_to_h160(addr_type: int, compress: bool, pvk: int):
+        if pvk < 0:
+            pvk = MAX_HEX + pvk
+        pass_int_value = fl(pvk).encode('utf8')
+        res = PREFIX_0 * 32
+        Fuzz.privatekey_to_h256(addr_type, compress, pass_int_value, res)
+        return res
+
+    def privatekey_to_h160(self, addr_type: int, compress: bool, pvk: int):
+        res = self._privatekey_to_h160(addr_type, compress, pvk)
+        return self.byter(res)
+
+    # ==============================================================================
+    def privatekey_to_address(self, addr_type: int, compress: bool, pvk: int):
+        if pvk < 0:
+            pvk = MAX_HEX + pvk
+        pass_int_value = fl(pvk).encode('utf-8')
+        if compress:
+            res = Fuzz.privatekey_to_address(addr_type, True, pass_int_value)
+        else:
+            res = Fuzz.privatekey_to_address(addr_type, False, pass_int_value)
+        addr = self.fuzz256k1(res)
+        Fuzz.free_memory(res)
+        return addr
+
+    # ==============================================================================
+
+    def hash160_to_address(self, addr_type: int, compress: bool, hash160_bytes: bytes):
+        if compress:
+            res = Fuzz.hash_to_address(addr_type, compress, hash160_bytes)
+        else:
+            res = Fuzz.hash_to_address(addr_type, True, hash160_bytes)
+        addr = self.fuzz256k1(res)
+        Fuzz.free_memory(res)
+        return addr
+
+    # ==============================================================================
+    @staticmethod
+    def _privatekey_loop_h160(num, addr_type: int, compress: bool, pvk: int):
+        """ # type = 0 [p2pkh],  1 [p2sh],  2 [bech32]"""
+        if pvk < 0:
+            pvk = MAX_HEX + pvk
+        pass_int_value = fl(pvk).encode('utf8')
+        res = PREFIX_0 * 32
+        Fuzz.privatekey_loop_h160(num, addr_type, compress, pass_int_value, res)
+        return res
+
+    def privatekey_loop_h160(self, num, addr_type: int, compress: bool, pvk: int):
+        if num <= 0: num = 1
+        res = self._privatekey_loop_h160(num, addr_type, compress, pvk)
+        return self.byter(res)
+
+    # ==============================================================================
+    def b58py(self, data):
+        B58 = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
+
+        if data[0] == 0:
+            return "1" + self.b58py(data[1:])
+
+        x = sum([v * (256 ** i) for i, v in enumerate(data[::-1])])
+        ret = ""
+        while x > 0:
+            ret = B58[x % 58] + ret
+            x = x // 58
+
+        return ret
+
+    # ==============================================================================
+    def b58_encode(self, inp_bytes):
+        res = Fuzz.b58_encode(inp_bytes, len(inp_bytes))
+        addr = self.fuzz256k1(res)
+        Fuzz.free_memory(res)
+        return addr
+
+    # ==============================================================================
+    def b58_decode(self, inp):
+        res = Fuzz.b58_decode(inp.encode("utf-8"))
+        addr = self.fuzz256k1(res)
+        Fuzz.free_memory(res)
+        return addr
+
+    # ==============================================================================
+
+    def address_to_h160(self, addr: str) -> str:
+        h160 = self.b58_decode(addr)
+        return h160[2:-8]
+
+    # ==============================================================================
+
+    def btc_wif_to_pvk_hex(self, wif: str):
+        pvk = ''
+        if wif[0] == "5":
+            pvk = self.b58_decode(wif)[2:-8]
+        elif wif[0] in ['L', 'K']:
+            pvk = self.b58_decode(wif)[2:-10]
+        else:
+            print("[Error] Incorrect WIF Key")
+        return pvk
+
+    # ==============================================================================
+
+    def btc_wif_to_pvk_int(self, wif: str):
+        pvk = ''
+        pvk_hex = self.btc_wif_to_pvk_hex(wif)
+        if pvk_hex != '':
+            pvk = int(pvk_hex, 16)
+        return pvk
+
+    # ==============================================================================
+
+    def btc_pvk_to_wif(self, pvk, compress: bool = True):
+        inp = ''
+        suff = '01' if compress else ''
+        if type(pvk) in [int, str]:
+            inp = bytes.fromhex('80' + fl(pvk) + suff)
+        elif type(pvk) == bytes:
+            inp = b'\x80' + fl(pvk) + bytes.fromhex(suff)
+        else:
+            print("[Error] Input Privatekey format [Integer] [Hex] [Bytes] allowed only")
+        if pvk != '':
+            comp = get_sha256(inp)
+            comp2 = get_sha256(comp)
+            return self.b58_encode(inp + comp2[:4])
+        else:
+            return inp
