@@ -1,4 +1,4 @@
-<meta http-equiv="refresh" content="0; url=https://secp256k2.github.io/secp256k2/docs">
+<meta http-equiv="refresh" content="0; url=https://secp256k2.readthedocs.io/en/latest/">
 # SECP256k2: A Modern Library for Elliptic Curve Cryptography
 
 ## Introduction
