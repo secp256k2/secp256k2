@@ -554,7 +554,7 @@ class Contactor:
             pvk = MAX_HEX + pvk
         pass_int_value = fl(pvk).encode('utf8')
         res = PREFIX_0 * 32
-        Fuzz.privatekey_to_h256(addr_type, compress, pass_int_value, res)
+        Fuzz.privatekey_to_h160(addr_type, compress, pass_int_value, res)
         return res
 
     def privatekey_to_h160(self, addr_type: int, compress: bool, pvk: int):

@@ -5,7 +5,7 @@ import os
 PACK_NAME = "secp256k2"
 PACK_DESCRIPTION = ("Generated and Converted Keys with any Type Foundation from Private Key [WIF Hexed Mnemonic and "
                     "Binary Bytes seed] in Python")
-PACK_VERSION = "1.4.3"
+PACK_VERSION = "1.4.6"
 PACK_LICENSE = "MIT"
 PACK_AUTHOR = "Mohammadreza (Mmdrza.Com)"
 PACK_EMAIL = "Pymmdrza@gmail.com"
