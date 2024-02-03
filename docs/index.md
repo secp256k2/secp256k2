@@ -1,8 +1,8 @@
-
 # SECP256k2: A Modern Library for Elliptic Curve Cryptography
 
-[ [Google Colab](https://colab.research.google.com/drive/1cYAahMj6n03I3yA5DnDVwbxhDbg9nuwA?usp=sharing 'Secp256k2 Fast Python Package To Generate and Convert Private Key Wallet') ] | [ [Programmer Website](https://mmdrza.com 'professional programming') ] | [ [EMAIL](mailto:mmdrza@usa.com) ]
+[![Google Colab](https://img.shields.io/badge/Google_Clab-Run_Now-50AF95?style=plastic)](https://colab.research.google.com/drive/1cYAahMj6n03I3yA5DnDVwbxhDbg9nuwA?usp=sharing) [![PyPI - Downloads](https://img.shields.io/pypi/dd/secp256k1?style=plastic&color=0075A8)](https://pypi.org/project/secp256k2/ 'PyPI - SECP256K2 - Download Per Day')  [![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/secp256k2/secp256k2?style=plastic&color=CA4245)](https://github.com/secp256k2/secp256k2/pulls)  [![GitHub issues](https://img.shields.io/github/issues-raw/secp256k2/secp256k2?style=plastic&color=CA4245)](https://github.com/secp256k2/secp256k2/issues) [![PyPI - License](https://img.shields.io/pypi/l/secp256k2?color=50AF95&style=plastic)](https://github.com/secp256k2/secp256k2/blob/main/LICENSE)  [![PyPI - Status](https://img.shields.io/pypi/status/SECP256K2?style=plastic&color=50AF95)](https://pypi.org/project/secp256k2/)  [![Read the Docs](https://img.shields.io/readthedocs/secp256k2?color=50AF95&style=plastic)](https://secp256k2.readthedocs.io/en/latest/)  [![programmer Official Website](https://img.shields.io/badge/Programmer_Website-Mmdrza.Com-0075A8?style=plastic)](https://mmdrza.com)  [![](https://img.shields.io/badge/Donate_-Bitcoin_Wallet-F7931A?style=plastic&logo=bitcoin)](https://github.com/secp256k2/secp256k2#donate)
 
+---
 ## Introduction
 
 **SECP256k2** is a high-performance and easy-to-use library for working with the SECP256k1 elliptic curve. This library is meticulously designed to provide a robust set of functionalities needed for the development of secure, fast, and efficient cryptographic applications.
