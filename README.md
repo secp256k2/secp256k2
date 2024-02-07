@@ -216,7 +216,7 @@ We welcome contributions from the open-source community. If you find any issues 
 
 ## License
 
-SECP256k2 is licensed under MIT. For more information, please see the [LICENSE](/LICENSE) file.
+SECP256k2 is licensed under MIT. For more information, please see the [LICENSE](https://github.com/secp256k2/secp256k2/blob/main/LICENSE) file.
 
 ---
 
