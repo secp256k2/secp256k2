@@ -1,9 +1,12 @@
-
 # SECP256k2: A Modern Library for Elliptic Curve Cryptography
 
+[![Google Colab](https://img.shields.io/badge/Google_Clab-Run_Now-50AF95?style=plastic)](https://colab.research.google.com/drive/1cYAahMj6n03I3yA5DnDVwbxhDbg9nuwA?usp=sharing) [![PyPI - Downloads](https://img.shields.io/pypi/dd/secp256k1?style=plastic&color=0075A8)](https://pypi.org/project/secp256k2/ 'PyPI - SECP256K2 - Download Per Day')  [![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/secp256k2/secp256k2?style=plastic&color=CA4245)](https://github.com/secp256k2/secp256k2/pulls)  [![GitHub issues](https://img.shields.io/github/issues-raw/secp256k2/secp256k2?style=plastic&color=CA4245)](https://github.com/secp256k2/secp256k2/issues) [![PyPI - License](https://img.shields.io/pypi/l/secp256k2?color=50AF95&style=plastic)](https://github.com/secp256k2/secp256k2/blob/main/LICENSE)  [![PyPI - Status](https://img.shields.io/pypi/status/SECP256K2?style=plastic&color=50AF95)](https://pypi.org/project/secp256k2/)  [![Read the Docs](https://img.shields.io/readthedocs/secp256k2?color=50AF95&style=plastic)](https://secp256k2.readthedocs.io/en/latest/)  [![programmer Official Website](https://img.shields.io/badge/Programmer_Website-Mmdrza.Com-0075A8?style=plastic)](https://mmdrza.com)  [![](https://img.shields.io/badge/Donate_-Bitcoin_Wallet-F7931A?style=plastic&logo=bitcoin)](https://github.com/secp256k2/secp256k2#donate)
+
+---
 ## Introduction
 
 **SECP256k2** is a high-performance and easy-to-use library for working with the SECP256k1 elliptic curve. This library is meticulously designed to provide a robust set of functionalities needed for the development of secure, fast, and efficient cryptographic applications.
+
 
 ## Features
 
@@ -17,13 +20,41 @@
 
 #### windows with `pip`
 ```bash
-pip install secp256k2
+pip install --upgrade secp256k2
 ```
 
 #### linux and Mac with `pip3`
 ```bash
-pip3 install secp256k2
+pip3 install --upgrade secp256k2
 ```
+
+### Generate and Converet 10,000 Key to Compress and Uncompress Address. ( Check Now in [Google Colab](https://colab.research.google.com/drive/1cYAahMj6n03I3yA5DnDVwbxhDbg9nuwA#scrollTo=qtb00EBtyCUA) )
+
+```python
+import os, timeit
+
+setup_code = """
+from os import urandom
+from secp256k2 import Contactor
+
+cont = Contactor()
+
+def test_Profile_1():
+    numd = urandom(32)[0]
+    caddr = cont.privatekey_to_address(0, True, numd)
+    uaddr = cont.privatekey_to_address(0, False, numd)
+"""
+
+# // Total Generated 
+num = 10000
+
+time1 = timeit.timeit("test_Profile_1()", setup=setup_code, number=num)
+
+
+print(f"Generated & Convereted {format(num, ',')} Key To : {time1:.6f} sec")
+```
+>[!NOTE]
+> Output : `Generated & Convereted 10,000 Key To : 0.393369 sec`
 
 ### Usage
 
@@ -195,5 +226,7 @@ Bitcoin:`1MMDRZA12xdBLD1P5AfEfvEMErp588vmF9`
 
 
 Programmer And Owner : [PyMmdrza](https://github.com/Pymmdrza)
+
+Email : Mmdrza@usa.com
 
 official website : <a title="official website programmer" href="https://mmdrza.com/" rel="follow">MMDRZA.COM</a>
